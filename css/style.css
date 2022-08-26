@@ -7,12 +7,65 @@
 
 main {
     width: 100%;
-    position: relative;
+    background-color: #f3f3f3;
+}
+
+main ion-icon:hover {
+    cursor: pointer;
+}
+
+.entry-screen {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    left: 0;
+    top: 0;
+    z-index: 2;
+}
+
+.entry-screen img {
+    width: 130px;
+    height: 92px;
+    margin-top: 72px;
+}
+
+.entry-screen input {
+    width: 261px;
+    height: 54px;
+    margin-top: 94px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    color: #aeaeae;
+    border-radius: 4px;
+    border: 1px solid #d7d7d7;
+}
+
+.entry-screen button {
+    width: 109px;
+    height: 45px;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    color: #696969;
+    background-color: #e7e7e7;
+    border-radius: 9px;
+    border: none;
+}
+
+.entry-screen button:hover {
+    cursor: pointer;
 }
 
 header {
     width: 100%;
     height: 80px;
+    background-color: #ffffff;
     position: fixed;
     left: 0;
     top: 0;
@@ -35,7 +88,7 @@ header ion-icon {
 }
 
 section ul {
-    margin-top: 106px;
+    margin: 106px 0;
 }
 
 section li {
@@ -45,11 +98,78 @@ section li {
 }
 
 .log {
+    width: 100%;
     background-color: #dcdcdc;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.log p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.log span {
+    margin-left: 8px;
+    color: #aaaaaa;
+}
+
+.log b {
+    font-weight: bold;
 }
 
 .privately {
+    width: 100%;
     background-color: #ffdede;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.privately p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.privately span {
+    margin-left: 8px;
+    color: #aaaaaa;
+}
+
+.privately b {
+    font-weight: bold;
+}
+
+.normal {
+    width: 100%;
+    background-color:  #ffffff;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.normal p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.normal span {
+    margin-left: 8px;
+    color: #aaaaaa;
+}
+
+.normal b {
+    font-weight: bold;
 }
 
 .hide {
@@ -63,9 +183,14 @@ aside {
     justify-content: end;
     position: fixed;
     right: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    top: 0; 
     z-index: 2;
+}
+
+.background {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .menu {
@@ -126,6 +251,7 @@ aside {
 footer {
     width: 100%;
     height: 80px;
+    background-color: #ffffff;
     position: fixed;
     left: 0;
     bottom: 0;
