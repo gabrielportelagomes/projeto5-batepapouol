@@ -14,20 +14,40 @@
     <main>
         <div class="entry-screen">
             <img src="./images/logo.png">
-            <input id="name" placeholder="Digite seu nome">
-            <button onclick="nameId()"><p>Entrar</p></button>
-       
+            <div class="user">
+                <input type="text" name="name" id="name" required>
+                <input type="submit" value="Entrar" id="send" onclick="nameId()">
+            </div>
+            <div class="loading hide">
+                <div class="lds-default">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+                    <p>Entrando...</p>
+                </div>
+            </div>
         </div>
         <header>
             <img src="./images/logo.png">
             <ion-icon name="people" onclick="menu()"></ion-icon>
         </header>
         <section>
-           <ul class="chat">
+            <ul class="chat">
                 <!-- <li class="log"></li>
                 <li class="privately"></li>
                 <li class="normal"></li> -->
-            </ul> 
+            </ul>
         </section>
         <aside class="hide">
             <div class="background" onclick="hideMenu()"></div>
@@ -61,8 +81,8 @@
             </div>
         </aside>
         <footer>
-            <input placeholder="Escreva aqui...">
-            <ion-icon name="paper-plane-outline"></ion-icon>
+            <input placeholder="Escreva aqui..." id="submit">
+            <ion-icon name="paper-plane-outline" onclick="sendMessage()"></ion-icon>
         </footer>
     </main>
 
