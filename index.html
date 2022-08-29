@@ -14,7 +14,7 @@
     <main>
         <div class="entry-screen">
             <img src="./images/logo.png">
-            <div class="user">
+            <div class="nick-user">
                 <input type="text" name="name" id="name" required>
                 <input type="submit" value="Entrar" id="send" onclick="nameId()">
             </div>
@@ -44,9 +44,7 @@
         </header>
         <section>
             <ul class="chat">
-                <!-- <li class="log"></li>
-                <li class="privately"></li>
-                <li class="normal"></li> -->
+                
             </ul>
         </section>
         <aside class="hide">
@@ -54,35 +52,37 @@
             <div class="menu">
                 <h1>Escolha um contato<br>para enviar mensagem:</h1>
                 <ul class="contacts">
-                    <li>
-                        <ion-icon name="people"></ion-icon>
-                        <p>Todos</p>
-                    </li>
-                    <li>
-                        <ion-icon name="person-circle"></ion-icon>
-                        <p>João</p>
-                    </li>
-                    <li>
-                        <ion-icon name="person-circle"></ion-icon>
-                        <p>Maria</p>
-                    </li>
+                  
                 </ul>
                 <h1>Escolha a visibilidade:</h1>
-                <ul class="visibility">
+                <ul class="send-visibility">
                     <li>
                         <ion-icon name="lock-open"></ion-icon>
-                        <p>Público</p>
+                        <div class="remove" id="visible">
+                            <div data-identifier="visibility">Público</div>
+                            <ion-icon name="checkmark-outline"></ion-icon>
+                        </div>
+                        
                     </li>
                     <li>
                         <ion-icon name="lock-closed"></ion-icon>
-                        <p>Reservadamente</p>
+                        <div class="remove" id="visible">
+                            <div data-identifier="visibility">Reservadamente</div>
+                            <ion-icon name="checkmark-outline"></ion-icon>
+                        </div>
+                        
                     </li>
                 </ul>
             </div>
         </aside>
         <footer>
-            <input placeholder="Escreva aqui..." id="submit">
-            <ion-icon name="paper-plane-outline" onclick="sendMessage()"></ion-icon>
+            <div class="bottom">
+                <input placeholder="Escreva aqui..." id="submit">
+                <div class="informstion hide">
+                    <p>Enviando para Maria (reservadamente)</p>
+                </div>
+            </div>
+            <ion-icon name="paper-plane-outline" id="send-message" onclick="sendMessage()"></ion-icon>
         </footer>
     </main>
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 * {
     font-family: 'Roboto', sans-serif;
@@ -34,7 +34,7 @@ main ion-icon:hover {
     margin-bottom: 94px;
 }
 
-.user {
+.nick-user {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -215,43 +215,91 @@ aside {
 }
 
 .contacts {
-    height: 110px;
+    width: 259px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     margin-top: 25px;
+    overflow-y: scroll;
+    margin-bottom: 1px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000000;
+    overflow-x: hidden;
 }
 
 .contacts li {
+    width: 259px;
     height: 36px;
     display: flex;
     align-items: center;
-} 
+    flex-shrink: 0;
+    margin-bottom: 1px;
+    position: relative;
+}
+
+.contacts li:hover {
+    cursor: pointer;
+}
 
 .contacts ion-icon {
     font-size: 25px;
     margin-left: 18px;
-    margin-right: 7px;
+    margin-right: 6px;
 }
 
-.visibility {
+.nick p {
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#online-user ion-icon{
+    color: #28BB25;
+    font-size: 18px;
+    position: absolute;
+    right: 27px;
+    top: 10px;
+}
+
+.send-visibility {
+    width: 259px;
     height: 73px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-top: 21px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000000;
 }
 
-.visibility li {
+.send-visibility li {
     height: 36px;
     display: flex;
     align-items: center;
+    position: relative;
 } 
 
-.visibility ion-icon {
+.send-visibility li:hover {
+    cursor: pointer;
+}
+
+.send-visibility ion-icon {
     font-size: 22px;
     margin-left: 20px;
     margin-right: 7px;
+}
+
+#visible ion-icon{
+    color: #28BB25;
+    font-size: 18px;
+    position: absolute;
+    right: 27px;
+    top: 10px;
+}
+
+.remove ion-icon {
+    display: none;
 }
 
 footer {
@@ -268,8 +316,20 @@ footer {
     z-index: 1;
 }
 
+.bottom {
+    width: calc(100% - 65px); 
+}
+
+.bottom p {
+    margin-left: 17px;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 300;
+    color: #505050;
+}
+
 footer input {
-    width: calc(100% - 65px);
+    width: 100%;
     height: 30px;
     margin-left: 17px;
     font-weight: 400;

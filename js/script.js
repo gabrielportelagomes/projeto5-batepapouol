@@ -1,9 +1,12 @@
 let userLog = [];
 let userStatus = [];
 let user = '';
+let addressee = '';
 let message = '';
+let visibility = '';
 let postedMessage = [];
 let postMessage = [];
+let onlineUser = [];
 
 function menu() {
     const activateMenu = document.querySelector('aside');
@@ -16,7 +19,7 @@ function hideMenu() {
 }
 
 function acivateAnimation() {
-    const hideLog = document.querySelector('.user');
+    const hideLog = document.querySelector('.nick-user');
     hideLog.classList.add('hide');
 
     const activateLoading = document.querySelector('.loading');
@@ -36,14 +39,22 @@ function hideEntryScreen() {
     hideMenu.classList.add('hide');
 }
 
+function startChat() {
+    hideEntryScreen();
+    getMessage();
+    setInterval(getMessage, 3000);
+    statusLog();
+}
+
 function nameId() {
     acivateAnimation()
+    getUsers();
     user = document.querySelector('#name').value;
 
     userLog = { name: user };
 
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', userLog);
-    promise.then(getMessage);
+    promise.then(startChat);
     promise.catch(invalidName);
 }
 
@@ -52,20 +63,31 @@ function invalidName() {
     hideAnimation();
 }
 
-function renderError() {
-    console.log("Ocorreu um erro!");
+function errorGetMessage() {
+    console.log("Ocorreu um erro ao buscar mensagens!");
+}
+
+function errorGetOnlineUsers() {
+    console.log("Ocorreu um erro ao buscar usuários ativos!");
+}
+
+function errorSendMessage() {
+    alert("Mensagem não enviada!\nEntre na sala novamente.");
+    window.location.reload();
+}
+
+function errorConection() {
+    alert("Conexão perdida!\nEntre na sala novamente.");
+    window.location.reload();
 }
 
 function getMessage() {
-    hideEntryScreen();
-    setInterval(statusLog, 5000);
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
     promise.then(renderMessage);
-    promise.catch(console.log("Erro ao renderizar menssagens"));
+    promise.catch(errorGetMessage);
 }
 
 function renderMessage(answer) {
-    /* console.log(answer); */
     postedMessage = answer.data;
 
 
@@ -89,41 +111,79 @@ function renderMessage(answer) {
     const messages = document.querySelector('.chat');
     const lastMessage = messages.lastElementChild;
     lastMessage.scrollIntoView();
-    console.log(lastMessage);
-
-    setInterval(getMessage, 3000);
 }
 
 function statusLog() {
-    /* console.log(user); */
     userStatus = { name: user };
-    /* console.log(userStatus); */
 
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', userStatus);
-    promise.then(console.log("Log funcionando"));
-    promise.catch(console.log("Erro no log"));
-} 
+    promise.then(connection);
+    promise.catch(errorConection);
+}
+
+function connection() {
+    setInterval(statusLog, 5000);
+}
 
 function sendMessage() {
     message = document.querySelector('#submit').value;
-
-    postedMessage = { 
-                    from: user,
-                    to: "Todos",
-                    text: message,
-                    type: "message"
-                    };
+    document.getElementById('submit').value = '';
+    postedMessage = {
+        from: user,
+        to: "Todos",
+        text: message,
+        type: "message"
+    };
 
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', postedMessage);
-    promise.then(console.log("mensagem enviada"));
-    promise.catch(console.log(window.location.reload()));
+    promise.then(getMessage);
+    promise.catch(errorSendMessage);
     message = '';
 }
 
-document.addEventListener("keypress", function(enter) {
+    document.addEventListener("keypress", function (enter) {
 
-    if(enter.key === "Enter") {
-        const sendButton = document.querySelector('#send');
-        sendButton.click();
+    if (user !== '' && enter.key === "Enter") {
+        const sendMessage = document.querySelector('#send-message');
+        sendMessage.click();
     }
 });
+
+function getUsers() {
+    const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
+    promise.then(renderUsers);
+    promise.catch(errorGetOnlineUsers);
+}
+
+function renderUsers(participant) {
+    onlineUser = participant.data;
+
+
+    let listUser = document.querySelector(".contacts");
+
+    listUser.innerHTML = `
+    <li>
+        <ion-icon name="people"></ion-icon>
+        <div class="remove" id="online-user">
+            <div data-identifier="participant">Todos</div>
+            <ion-icon name="checkmark-outline"></ion-icon>
+        </div>
+    </li>`;
+
+    for (let i = 0; i < onlineUser.length; i++) {
+        if (onlineUser[i].name !== user) {
+            listUser.innerHTML += `
+            <li>
+                <ion-icon name="people"></ion-icon>
+                <div class="remove" id="online-user">
+                    <div class="nick"data-identifier="participant"><p>${onlineUser[i].name}</></div>
+                    <ion-icon name="checkmark-outline"></ion-icon>
+                </div>
+            </li>`
+        }
+    }
+
+    setInterval(getUsers, 10000);
+}
+
+
